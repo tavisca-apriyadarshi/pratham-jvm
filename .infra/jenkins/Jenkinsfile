@@ -37,7 +37,7 @@ pipeline {
         {
             steps {
                 bat script: '''
-                    docker build . -t "firstrepo"
+                    docker build . -t "firstimage"
                 ''',
             label: "Building Docker Image"
             }
@@ -47,7 +47,8 @@ pipeline {
             steps {
                 bat script: '''
                    docker login -u=rajattavisca27 -p=Rajjothehero@12
-                    docker push rajattavisca27/firstrepo:firstrepo
+                   docker tag firstimage rajattavisca27/firstimage
+                    docker push rajattavisca27/firstimage:latest
                     ''',
             label: "Publishing Docker Image"
             }
