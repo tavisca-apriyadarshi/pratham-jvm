@@ -37,8 +37,7 @@ pipeline {
         {
             steps {
                 bat script: '''
-                    docker build . -t "firstrepo"
-
+                    docker build . -t "firstrepo:latest"
                 ''',
             label: "Building Docker Image"
             }
