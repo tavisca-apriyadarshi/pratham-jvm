@@ -47,7 +47,7 @@ pipeline {
         {
             steps {
                 bat script: '''
-                   docker login -u=rajattavisca27 -p=Rajjothehero@12
+                   docker login -u=rajattavisca27 -p=Rajat@1502710121
                      docker tag firstimage rajattavisca27/firstrepoimage
                     docker push rajattavisca27/firstrepoimage:latest
                     ''',
