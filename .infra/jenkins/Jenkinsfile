@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                bat script: '''
+                     gradlew build
+
+
+       
+       
+                ''',
+            label: "Building Project"
+           }
+            }
+        stage('Test')
+        {
+            steps {
+                bat script: '''
+                    echo "I am in Test step"
+
+                    gradlew test
+                ''',
+            label: "Running Unit Test Cases"
+            }
+        }
+        stage('Static Code Analysis')
+        {
+            steps {
+                bat script: '''
+                    echo "I am in Sonarqube scan"
+                    gradlew sonarqube
+                ''',
+            label: "Running Sonarqube Scan"
+            }
+        }
+        stage('Build DockerImage')
+        {
+            steps {
+                bat script: '''
+                    docker build . -t "firstimage"
+                ''',
+            label: "Building Docker Image"
+            }
+        }
+        stage('Publish DockerImage')
+        {
+            steps {
+                bat script: '''
+                   docker login -u=rajattavisca27 -p=Rajat@1502710121
+                     docker tag firstimage rajattavisca27/firstrepoimage
+                    docker push rajattavisca27/firstrepoimage:latest
+                    ''',
+            label: "Publishing Docker Image"
+            }
+        }
+    }
+  }
