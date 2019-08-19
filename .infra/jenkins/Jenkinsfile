@@ -48,8 +48,8 @@ pipeline {
             steps {
                 bat script: '''
                    docker login -u=rajattavisca27 -p=Rajjothehero@12
-                     docker tag firstimage rajattavisca27/firstimage
-                    docker push rajattavisca27/firstimage
+                     docker tag firstimage rajattavisca27/firstrepoimage
+                    docker push rajattavisca27/firstrepoimage:latest
                     ''',
             label: "Publishing Docker Image"
             }
